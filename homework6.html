@@ -120,6 +120,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">N741 Spring 2018 - Homework 6</h1>
+<h3 class="subtitle"><em>Homework 6 - DUE FRIDAY April 6, 2018</em></h3>
 <h4 class="author"><em>Melinda Higgins</em></h4>
 <h4 class="date"><em>March 30, 2018</em></h4>
 
@@ -195,12 +196,16 @@ $(document).ready(function () {
 <div id="homework-6-assignment" class="section level2">
 <h2>Homework 6 Assignment</h2>
 <p><strong>SETUP</strong> Download and run the “loadHELP.R” <code>R</code> script (included in this Github repo <a href="https://github.com/melindahiggins2000/N741Spring2018_Homework6" class="uri">https://github.com/melindahiggins2000/N741Spring2018_Homework6</a>) to read in the HELP Dataset “helpmkh.sav”. This script also pulls out the variables you need and creates the dichotomous variable for depression <code>cesd_gte16</code> which you will need for the logistic regression.</p>
+<p>After running this R script, you will have a data frame called <code>h1</code> you can use to do the rest of your analyses. You can also copy this code into your first R markdown code chunk to get you started on Homework 6.</p>
 <p>For Homework 6, you will be looking at depression in these subjects. First, you will be running a model to look at the continuous depression measure - the CESD <a href="http://cesd-r.com/">Center for Epidemiologic Studies Depression Scale</a> which is a measure of depressive symptoms. Also see the APA details on the CESD at <a href="http://www.apa.org/pi/about/publications/caregivers/practice-settings/assessment/tools/depression-scale.aspx" class="uri">http://www.apa.org/pi/about/publications/caregivers/practice-settings/assessment/tools/depression-scale.aspx</a>. The CESD can be used to predict actual clinical depression but it is not technically a diagnosis of depression. The CESD scores range from 0 (no depressive symptoms) to 60 (most severe depressive symptoms). You will use the (<code>cesd</code>) variable to run a linear regression.</p>
 <p>The recommended threshold use to indicate potential clinical depression is for people with scores of 16 or greater. You will then use the variable created using this cutoff (<code>cesd_gte16</code>) to perform a similar modeling approach with the variables to predict the probability of clinical depression (using logistic regression).</p>
+</div>
+<div id="homework-6-tasks" class="section level2">
+<h2>Homework 6 Tasks</h2>
 <ol style="list-style-type: decimal">
 <li><p>[Model 1] Run a simple linear regression (<code>lm()</code>) for <code>cesd</code> using the <code>mcs</code> variable, which is the mental component quality of life score from the SF36.</p></li>
 <li><p>Write the equation of the final fitted model (i.e. what is the intercept and the slope)? Write a sentence describing the model results (interpret the intercept and slope). <em>NOTE: The <code>mcs</code> values range form 0 to 100 where the population norm for “normal mental health quality of life” is considered to be a 50. If you score higher than 50 on the <code>mcs</code> you have mental health better than the population and visa versa - if your <code>mcs</code> scores are less than 50 then your mental health is considered to be worse than the population norm.</em></p></li>
-<li><p>How much variability in the <code>cesd</code> does the <code>mcs</code> explain? (what is the R2?) Write a sentence describing how well the <code>mcs</code> does in predicting the <code>cesd</code>.</p></li>
+<li><p>How much variability in the <code>cesd</code> does the <code>mcs</code> explain? (what is the R<sup>2</sup>?) Write a sentence describing how well the <code>mcs</code> does in predicting the <code>cesd</code>.</p></li>
 <li>[Model 2] Run a second linear regression model (<code>lm()</code>) for the <code>cesd</code> putting in all of the other variables:
 <ul>
 <li><code>age</code></li>
@@ -214,13 +219,16 @@ $(document).ready(function () {
 <li><p>Which variables are significant in the model? Write a sentence or two describing the impact of these variables for predicting depression scores (HINT: interpret the coefficient terms).</p></li>
 <li><p>Following the example we did in class for the Prestige dataset <a href="https://cdn.rawgit.com/vhertzb/2018week9/2f2ea142/2018week9.html?raw=true" class="uri">https://cdn.rawgit.com/vhertzb/2018week9/2f2ea142/2018week9.html?raw=true</a>, generate the diagnostic plotss for this model with these 6 predictors (e.g. get the residual plot by variables, the added-variable plots, the Q-Q plot, diagnostic plots). Also run the VIFs to check for multicollinearity issues.</p></li>
 <li><p>[Model 3] Repeat Model 1 above, except this time run a logistic regression (<code>glm()</code>) to predict CESD scores =&gt; 16 (using the <code>cesd_gte16</code> as the outcome) as a function of <code>mcs</code> scores. Show a summary of the final fitted model and explain the coefficients. [<strong>REMEMBER</strong> to compute the Odds Ratios after you get the raw coefficient (betas)].</p></li>
-<li>Use the <code>predict()</code> function like we did in class to predict CESD =&gt; 16 and compare it back to the original data. For now, use a cutoff probability of 0.5 - if the probability is &gt; 0.5 consider this to be true and false otherwise. Like we did in class.9. <strong>REMEMBER</strong> See the R code for the class example at <a href="https://github.com/melindahiggins2000/N741_lecture11_27March2018/blob/master/lesson11_logreg_Rcode.R" class="uri">https://github.com/melindahiggins2000/N741_lecture11_27March2018/blob/master/lesson11_logreg_Rcode.R</a>
+<li>Use the <code>predict()</code> function like we did in class to predict CESD =&gt; 16 and compare it back to the original data. For now, use a cutoff probability of 0.5 - if the probability is &gt; 0.5 consider this to be true and false otherwise. Like we did in class. <strong>REMEMBER</strong> See the R code for the class example at <a href="https://github.com/melindahiggins2000/N741_lecture11_27March2018/blob/master/lesson11_logreg_Rcode.R" class="uri">https://github.com/melindahiggins2000/N741_lecture11_27March2018/blob/master/lesson11_logreg_Rcode.R</a>
 <ul>
 <li>How well did the model correctly predict CESD scores =&gt; 16 (indicating depression)? (make the “confusion matrix” and look at the true positives and true negatives versus the false positives and false negatives).</li>
 </ul></li>
 <li><p>Make an ROC curve plot and compute the AUC and explain if this is a good model for predicting depression or not</p></li>
 <li><p>Make a plot showing the probability curve - put the <code>mcs</code> values on the X-axis and the probability of depression on the Y-axis. Based on this plot, do you think the <code>mcs</code> is a good predictor of depression? [<strong>FYI</strong> This plot is also called an “effect plot” is you’re using <code>Rcmdr</code> to do these analyses.]</p></li>
 </ol>
+<hr />
+<p><strong>Use R markdown to complete your homework and show all of your code and output in your final report - Turn in a PDF of your report to Canvas. Include a link to your Github repo for Homework 6</strong></p>
+<hr />
 </div>
 
 
